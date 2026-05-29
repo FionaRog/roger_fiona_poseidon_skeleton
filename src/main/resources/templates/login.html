@@ -8,6 +8,7 @@
 <h3> Login with username and password </h3>
 
 <form action="#" th:action="@{/app/login}" method="post" class="form-horizontal" style="width: 100%">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
     <div class="form-group">
         <label for="username" class="col-sm-2 control-label">User : </label>
         <div class="col-sm-10">
