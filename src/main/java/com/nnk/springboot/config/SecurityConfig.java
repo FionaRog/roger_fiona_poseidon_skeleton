@@ -24,7 +24,15 @@ public class SecurityConfig {
                         .defaultSuccessUrl("/home", true)
                         .failureUrl("/app/error")
                         .permitAll()
-                ).build();
+                )
+                .logout(logout -> logout
+                        .logoutUrl("/app-logout")
+                        .logoutSuccessUrl("/app/login")
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID")
+                        .permitAll()
+                )
+                .build();
     }
 
 

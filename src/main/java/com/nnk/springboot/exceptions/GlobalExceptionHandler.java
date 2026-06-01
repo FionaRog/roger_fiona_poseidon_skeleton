@@ -18,4 +18,13 @@ public class GlobalExceptionHandler {
         return "redirect:/bidList/list";
     }
 
+    @ExceptionHandler(CurvePointNotFoundException.class)
+    public String handleCurvePointNotFound(CurvePointNotFoundException exception, RedirectAttributes redirectAttributes) {
+        log.warn("CurvePoint error: {}", exception.getMessage());
+
+        redirectAttributes.addFlashAttribute("errorMessage", exception.getMessage());
+
+        return "redirect:/curvePoint/list";
+    }
+
 }
