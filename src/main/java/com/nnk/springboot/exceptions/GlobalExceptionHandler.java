@@ -27,4 +27,21 @@ public class GlobalExceptionHandler {
         return "redirect:/curvePoint/list";
     }
 
+    @ExceptionHandler(RatingNotFoundException.class)
+    public String handleRatingNotFound(RatingNotFoundException exception, RedirectAttributes redirectAttributes) {
+        log.warn("Rating error: {}", exception.getMessage());
+
+        redirectAttributes.addFlashAttribute("errorMessage", exception.getMessage());
+
+        return "redirect:/rating/list";
+    }
+
+    @ExceptionHandler(RuleNameNotFoundException.class)
+    public String handleRuleNameNotFound(RuleNameNotFoundException exception, RedirectAttributes redirectAttributes) {
+        log.warn("Rating error: {}", exception.getMessage());
+
+        redirectAttributes.addFlashAttribute("errorMessage", exception.getMessage());
+
+        return "redirect:/ruleName/list";
+    }
 }

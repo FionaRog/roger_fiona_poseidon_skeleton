@@ -1,16 +1,18 @@
 package com.nnk.springboot.domain;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * JPA entity representing a rating persisted in the rating table.
+ */
 @Getter
 @Setter
 @Entity
 @Table(name = "rating")
 public class Rating {
-    // TODO: Map columns in data table RATING with corresponding java fields
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name= "Id")
