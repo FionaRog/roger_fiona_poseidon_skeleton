@@ -70,7 +70,7 @@ public class CurveController {
      * @return the add view when validation fails, otherwise redirects to the list
      */
     @PostMapping("/curvePoint/validate")
-    public String validate(@Valid CurveRequestDto curvePoint, BindingResult result, RedirectAttributes redirectAttributes) {
+    public String validate(@Valid  @ModelAttribute("curvePoint") CurveRequestDto curvePoint, BindingResult result, RedirectAttributes redirectAttributes) {
 
         if (result.hasErrors()) {
             return "curvePoint/add";
