@@ -38,7 +38,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(RuleNameNotFoundException.class)
     public String handleRuleNameNotFound(RuleNameNotFoundException exception, RedirectAttributes redirectAttributes) {
-        log.warn("Rating error: {}", exception.getMessage());
+        log.warn("RuleName error: {}", exception.getMessage());
 
         redirectAttributes.addFlashAttribute("errorMessage", exception.getMessage());
 

@@ -5,12 +5,15 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Entity representing a rule definition stored in the rulename table.
+ */
 @Getter
 @Setter
 @Entity
 @Table(name = "rulename")
 public class RuleName {
-    // TODO: Map columns in data table RULENAME with corresponding java fields
+
    @Id
    @GeneratedValue(strategy = GenerationType.AUTO)
    @Column(name= "Id")
