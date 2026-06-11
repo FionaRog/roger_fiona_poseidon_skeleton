@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Loads authenticated users and their authorities from the application database.
+ */
 @Service
 public class CustomUserDetails implements UserDetailsService {
 
@@ -20,11 +23,23 @@ public class CustomUserDetails implements UserDetailsService {
         this.userRepository = userRepository;
     }
 
+    /**
+     * Loads Spring Security user details from the stored application User.
+     *
+     * @param username the login username submitted during authentication
+     * @return Spring Security user details containing credentials and authorities
+     * @throws UsernameNotFoundException when no User exists for the given username
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
 
-        List<GrantedAuthority> grantedAuthorities = List.of(new SimpleGrantedAuthority("ROLE_USER"),  new SimpleGrantedAuthority("ROLE_ADMIN"));
+        User user = userRepository.findByUsername(username);
+        if(user==null){
+            throw new UsernameNotFoundException("User not found: " + username);
+        }
+
+        String role = user.getRole().startsWith("ROLE_") ? user.getRole() : "ROLE_" + user.getRole();
+        List<GrantedAuthority> grantedAuthorities = List.of(new SimpleGrantedAuthority(role));
 
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
 

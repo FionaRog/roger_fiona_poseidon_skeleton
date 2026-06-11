@@ -53,4 +53,13 @@ public class GlobalExceptionHandler {
 
         return "redirect:/trade/list";
     }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    public String handleUserNotFound(UserNotFoundException exception, RedirectAttributes redirectAttributes) {
+        log.warn("User error: {}", exception.getMessage());
+
+        redirectAttributes.addFlashAttribute("errorMessage", exception.getMessage());
+
+        return "redirect:/user/list";
+    }
 }

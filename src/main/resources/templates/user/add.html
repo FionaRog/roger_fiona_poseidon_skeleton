@@ -15,6 +15,8 @@
 
 	<div class="row">
 		<form action="#" th:action="@{/user/validate}" th:object="${user}" method="post" class="form-horizontal" style="width: 100%">
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
 			<div class="form-group">
 				<label for="fullname" class="col-sm-2 control-label">Full Name</label>
 				<div class="col-sm-10">
@@ -22,6 +24,7 @@
 					<p class="text-danger" th:if="${#fields.hasErrors('fullname')}" th:errors="*{fullname}"></p>
 				</div>
 			</div>
+
 			<div class="form-group">
 				<label for="username" class="col-sm-2 control-label">User Name</label>
 				<div class="col-sm-10">
@@ -29,6 +32,7 @@
 					<p class="text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
 				</div>
 			</div>
+
 			<div class="form-group">
 				<label for="password" class="col-sm-2 control-label">Password</label>
 				<div class="col-sm-10">
@@ -36,11 +40,14 @@
 					<p class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
 				</div>
 			</div>
+
 			<div class="form-group">
-				<label for="password" class="col-sm-2 control-label">Role</label>
-				<div class="col-sm-10">
-					<label class="checkbox-inline"><input type="radio" th:field="*{role}" th:value="ADMIN">Admin</label>
-					<label class="checkbox-inline"><input type="radio" th:field="*{role}" th:value="USER">User</label>
+				<label class="col-sm-2 control-label">Role</label>
+				<div for="role-admin" class="col-sm-10">
+					<label class="checkbox-inline">
+						<input type="radio" th:field="*{role}" id="role-admin" th:value="ADMIN">Admin</label>
+					<label for="role-user" class="checkbox-inline">
+						<input type="radio" th:field="*{role}" id="role-user" th:value="USER">User</label>
 					<p class="text-danger" th:if="${#fields.hasErrors('role')}" th:errors="*{role}"></p>
 				</div>
 			</div>

@@ -1,10 +1,12 @@
 package com.nnk.springboot.domain;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Entity representing an application user stored in the users table.
+ */
 @Getter
 @Setter
 @Entity
@@ -16,13 +18,9 @@ public class User {
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name= "Id")
     private Integer id;
-    @NotBlank(message = "Username is mandatory")
     private String username;
-    @NotBlank(message = "Password is mandatory")
     private String password;
-    @NotBlank(message = "FullName is mandatory")
     private String fullname;
-    @NotBlank(message = "Role is mandatory")
     private String role;
 
 }

@@ -14,7 +14,9 @@
 	</div>
 
 	<div class="row">
-		<form action="#" th:action="@{/user/update/{id}(id=${user.id})}" th:object="${user}" method="post" class="form-horizontal" style="width: 100%">
+		<form action="#" th:action="@{/user/update/{id}(id=${id})}" th:object="${user}" method="post" class="form-horizontal" style="width: 100%">
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
 			<div class="form-group">
 				<label for="fullname" class="col-sm-2 control-label">Full Name</label>
 				<div class="col-sm-10">
@@ -30,24 +32,25 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="password" class="col-sm-2 control-label">Password</label>
+				<label for="password" class="col-sm-2 control-label">New Password</label>
 				<div class="col-sm-10">
 					<input type="password" th:field="*{password}" id="password" placeholder="Password" class="col-4">
 					<p class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="password" class="col-sm-2 control-label">Role</label>
+				<label class="col-sm-2 control-label">Role</label>
 				<div class="col-sm-10">
-					<label class="checkbox-inline"><input type="radio" th:field="*{role}" th:value="ADMIN">Admin</label>
-					<label class="checkbox-inline"><input type="radio" th:field="*{role}" th:value="USER">User</label>
+					<label for="role-admin" class="checkbox-inline">
+						<input type="radio" th:field="*{role}" id="role-admin" th:value="ADMIN">Admin</label>
+					<label for="role-user" class="checkbox-inline">
+						<input type="radio" th:field="*{role}" id="role-user" th:value="USER">User</label>
 				</div>
 			</div>
 
 
 			<div class="form-group">
 				<div class="col-sm-12">
-					<input type="hidden" th:field="*{id}">
 					<a class="btn btn-danger btn-sm" href="/user/list">Cancel</a>
 					<input class="btn btn-primary btn-sm" type="submit" value="Update User">
 				</div>

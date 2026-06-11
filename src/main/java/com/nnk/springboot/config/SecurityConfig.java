@@ -11,11 +11,13 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
+    // ajouter condition admin pour accéder user/add et update
     @Bean
    public SecurityFilterChain filterChain (HttpSecurity http) throws Exception {
         return  http.authorizeRequests(auth -> {
-                        auth.requestMatchers("/app/error","/app/login", "/user/list").permitAll();
+                        auth.requestMatchers("/app/error","/app/login").permitAll();
                         auth.requestMatchers("/css/**", "/js/**").permitAll();
+                        auth.requestMatchers("/user/**").hasRole("ADMIN");
                         auth.anyRequest().authenticated();
                 })
                 .formLogin(form -> form
