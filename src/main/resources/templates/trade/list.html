@@ -8,6 +8,9 @@
 </head>
 <body>
 <div class="container">
+	<div class="alert alert-danger" th:if="${errorMessage}" th:text="${errorMessage}"></div>
+	<div class="alert alert-success" th:if="${successMessage}" th:text="${successMessage}"></div>
+
 	<div class="row">
 		<div class="col-6">
 			<a href="/bidList/list">Bid List</a>&nbsp;|&nbsp;
@@ -17,8 +20,9 @@
 			<a href="/trade/list">Rule</a>
 		</div>
 		<div class="col-6 text-right">
-			Logged in user: <b th:inline="text"  class="user"> [[${#httpServletRequest.remoteUser}]] </b>
+			Logged in user: <b th:text="${username}"  class="user"></b>
 			<form th:action="@{/app-logout}" method="POST">
+				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 				<input type="submit" value="Logout"/>
 			</form>
 		</div>
@@ -38,13 +42,16 @@
 			</thead>
 			<tbody>
 				<tr th:each="trade : ${trades}">
-					<td style="width: 10%" th:text="${trade.id}"></td>
+					<td style="width: 10%" th:text="${trade.tradeId}"></td>
 					<td th:text="${trade.account}"></td>
 					<td th:text="${trade.type}"></td>
 					<td th:text="${trade.buyQuantity}"></td>
 					<td style="width: 15%" class="text-center">
-						<a th:href="@{/trade/update/{id}(id=${trade.id})}">Edit</a>&nbsp;|&nbsp;
-						<a th:href="@{/trade/delete/{id}(id=${trade.id})}">Delete</a>
+						<a th:href="@{/trade/update/{id}(id=${trade.tradeId})}">Edit</a>&nbsp;|&nbsp;
+						<form th:action="@{/trade/delete/{id}(id=${trade.tradeId})}" method="post" style="display: inline;">
+							<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+							<button type="submit" class="btn btn-link p-0 align-baseline">Delete</button>
+						</form>
 					</td>
 				</tr>
 			</tbody>

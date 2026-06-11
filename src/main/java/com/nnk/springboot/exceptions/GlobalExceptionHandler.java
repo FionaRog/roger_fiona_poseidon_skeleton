@@ -44,4 +44,13 @@ public class GlobalExceptionHandler {
 
         return "redirect:/ruleName/list";
     }
+
+    @ExceptionHandler(TradeNotFoundException.class)
+    public String handleTradeNotFound(TradeNotFoundException exception, RedirectAttributes redirectAttributes) {
+        log.warn("Trade error: {}", exception.getMessage());
+
+        redirectAttributes.addFlashAttribute("errorMessage", exception.getMessage());
+
+        return "redirect:/trade/list";
+    }
 }

@@ -8,12 +8,16 @@
 </head>
 <body>
 <div class="container">
+	<div class="alert alert-danger" th:if="${errorMessage}" th:text="${errorMessage}"></div>
+	<div class="alert alert-success" th:if="${successMessage}" th:text="${successMessage}"></div>
+
 	<div class="row">
 		<h2>Update Trade</h2>
 	</div>
 
 	<div class="row">
-		<form action="#" th:action="@{/trade/update/{id}(id=${trade.tradeId})}" th:object="${trade}" method="post" class="form-horizontal" style="width: 100%">
+		<form action="#" th:action="@{/trade/update/{id}(id=${id})}" th:object="${trade}" method="post" class="form-horizontal" style="width: 100%">
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 			<div class="form-group">
 				<label for="account" class="col-sm-2 control-label">Account</label>
 				<div class="col-sm-10">
@@ -39,7 +43,6 @@
 
 			<div class="form-group">
 				<div class="col-sm-12">
-					<input type="hidden" th:field="*{id}">
 					<a class="btn btn-danger btn-sm" href="/trade/list">Cancel</a>
 					<input class="btn btn-primary btn-sm" type="submit" value="Update Trade">
 				</div>

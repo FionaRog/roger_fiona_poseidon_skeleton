@@ -1,18 +1,20 @@
 package com.nnk.springboot.domain;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Timestamp;
 
+/**
+ * Entity representing a trade stored in the trade table.
+ */
 @Getter
 @Setter
 @Entity
 @Table(name = "trade")
 public class Trade {
-    // TODO: Map columns in data table TRADE with corresponding java fields
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "TradeId")
