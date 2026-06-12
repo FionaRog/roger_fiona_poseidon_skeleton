@@ -15,21 +15,35 @@ public class SecurityConfig {
     @Bean
    public SecurityFilterChain filterChain (HttpSecurity http) throws Exception {
         return  http.authorizeRequests(auth -> {
-                        auth.requestMatchers("/app/error","/app/login").permitAll();
+                        auth.requestMatchers("/access-denied","/login").permitAll();
                         auth.requestMatchers("/css/**", "/js/**").permitAll();
                         auth.requestMatchers("/user/**").hasRole("ADMIN");
                         auth.anyRequest().authenticated();
                 })
                 .formLogin(form -> form
-                        .loginPage("/app/login").loginProcessingUrl("/app/login")
+                        .loginPage("/login").loginProcessingUrl("/login")
                         .usernameParameter("username").passwordParameter("password")
-                        .defaultSuccessUrl("/home", true)
-                        .failureUrl("/app/error")
+                        .successHandler((request, response, authentication) -> {
+                            boolean isAdmin = authentication.getAuthorities().stream()
+                                    .anyMatch(authority -> authority.getAuthority().equals("ROLE_ADMIN"));
+
+                            if(isAdmin) {
+                                response.sendRedirect("/user/list");
+                            } else {
+                                response.sendRedirect("/home");
+                            }
+                        })
+                        .failureUrl("/login?error=true")
                         .permitAll()
                 )
+                .exceptionHandling(exception -> exception
+                        .accessDeniedHandler((request, response, accessDeniedException) ->
+                                response.sendRedirect ("/access-denied")
+                        )
+                )
                 .logout(logout -> logout
-                        .logoutUrl("/app-logout")
-                        .logoutSuccessUrl("/app/login")
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/login")
                         .invalidateHttpSession(true)
                         .deleteCookies("JSESSIONID")
                         .permitAll()

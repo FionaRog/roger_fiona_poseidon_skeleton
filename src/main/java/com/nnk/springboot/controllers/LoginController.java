@@ -7,21 +7,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
+
 @Controller
-@RequestMapping("app")
 public class LoginController {
 
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("login")
+    @GetMapping("/login")
     public ModelAndView login() {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("login");
         return mav;
     }
 
-    @GetMapping("secure/article-details")
+    @GetMapping("/secure/article-details")
     public ModelAndView getAllUserArticles() {
         ModelAndView mav = new ModelAndView();
         mav.addObject("users", userRepository.findAll());
@@ -29,12 +30,16 @@ public class LoginController {
         return mav;
     }
 
-    @GetMapping("error")
-    public ModelAndView error() {
+    @GetMapping("/access-denied")
+    public ModelAndView accessDenied(Principal principal) {
         ModelAndView mav = new ModelAndView();
+
         String errorMessage= "You are not authorized for the requested data.";
         mav.addObject("errorMsg", errorMessage);
+        mav.addObject("username", principal.getName());
+
         mav.setViewName("403");
+
         return mav;
     }
 }
