@@ -1,7 +1,7 @@
 package com.nnk.springboot.controllers;
 
-import com.nnk.springboot.dtos.BidListRequestDto;
-import com.nnk.springboot.dtos.BidListViewDto;
+import com.nnk.springboot.dtos.request.BidListRequestDto;
+import com.nnk.springboot.dtos.view.BidListViewDto;
 import com.nnk.springboot.services.IBidListService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

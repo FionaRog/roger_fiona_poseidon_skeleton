@@ -1,8 +1,8 @@
 package com.nnk.springboot.services.impl;
 
 import com.nnk.springboot.domain.Trade;
-import com.nnk.springboot.dtos.TradeRequestDto;
-import com.nnk.springboot.dtos.TradeViewDto;
+import com.nnk.springboot.dtos.request.TradeRequestDto;
+import com.nnk.springboot.dtos.view.TradeViewDto;
 import com.nnk.springboot.exceptions.TradeNotFoundException;
 import com.nnk.springboot.mappers.TradeMapper;
 import com.nnk.springboot.repositories.TradeRepository;

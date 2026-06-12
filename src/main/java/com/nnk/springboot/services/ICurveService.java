@@ -1,7 +1,7 @@
 package com.nnk.springboot.services;
 
-import com.nnk.springboot.dtos.CurveRequestDto;
-import com.nnk.springboot.dtos.CurveViewDto;
+import com.nnk.springboot.dtos.request.CurveRequestDto;
+import com.nnk.springboot.dtos.view.CurveViewDto;
 
 import java.util.List;
 

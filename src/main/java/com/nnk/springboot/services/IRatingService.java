@@ -1,7 +1,7 @@
 package com.nnk.springboot.services;
 
-import com.nnk.springboot.dtos.RatingRequestDto;
-import com.nnk.springboot.dtos.RatingViewDto;
+import com.nnk.springboot.dtos.request.RatingRequestDto;
+import com.nnk.springboot.dtos.view.RatingViewDto;
 
 import java.util.List;
 

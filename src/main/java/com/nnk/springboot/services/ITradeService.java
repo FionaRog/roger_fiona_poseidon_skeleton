@@ -1,7 +1,7 @@
 package com.nnk.springboot.services;
 
-import com.nnk.springboot.dtos.TradeRequestDto;
-import com.nnk.springboot.dtos.TradeViewDto;
+import com.nnk.springboot.dtos.request.TradeRequestDto;
+import com.nnk.springboot.dtos.view.TradeViewDto;
 
 import java.util.List;
 

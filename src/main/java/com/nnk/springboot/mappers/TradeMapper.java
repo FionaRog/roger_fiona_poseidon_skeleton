@@ -1,8 +1,8 @@
 package com.nnk.springboot.mappers;
 
 import com.nnk.springboot.domain.Trade;
-import com.nnk.springboot.dtos.TradeRequestDto;
-import com.nnk.springboot.dtos.TradeViewDto;
+import com.nnk.springboot.dtos.request.TradeRequestDto;
+import com.nnk.springboot.dtos.view.TradeViewDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 

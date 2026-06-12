@@ -1,4 +1,4 @@
-package com.nnk.springboot.dtos;
+package com.nnk.springboot.dtos.request;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;

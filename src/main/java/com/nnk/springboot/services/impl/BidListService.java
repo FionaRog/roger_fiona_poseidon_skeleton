@@ -1,8 +1,8 @@
 package com.nnk.springboot.services.impl;
 
 import com.nnk.springboot.domain.BidList;
-import com.nnk.springboot.dtos.BidListRequestDto;
-import com.nnk.springboot.dtos.BidListViewDto;
+import com.nnk.springboot.dtos.request.BidListRequestDto;
+import com.nnk.springboot.dtos.view.BidListViewDto;
 import com.nnk.springboot.exceptions.BidListNotFoundException;
 import com.nnk.springboot.mappers.BidListMapper;
 import com.nnk.springboot.repositories.BidListRepository;

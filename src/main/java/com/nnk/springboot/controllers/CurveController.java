@@ -1,7 +1,7 @@
 package com.nnk.springboot.controllers;
 
-import com.nnk.springboot.dtos.CurveRequestDto;
-import com.nnk.springboot.dtos.CurveViewDto;
+import com.nnk.springboot.dtos.request.CurveRequestDto;
+import com.nnk.springboot.dtos.view.CurveViewDto;
 import com.nnk.springboot.services.ICurveService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;

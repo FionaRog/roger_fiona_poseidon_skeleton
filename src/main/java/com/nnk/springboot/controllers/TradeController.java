@@ -1,7 +1,7 @@
 package com.nnk.springboot.controllers;
 
-import com.nnk.springboot.dtos.TradeRequestDto;
-import com.nnk.springboot.dtos.TradeViewDto;
+import com.nnk.springboot.dtos.request.TradeRequestDto;
+import com.nnk.springboot.dtos.view.TradeViewDto;
 import com.nnk.springboot.services.ITradeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,8 +1,8 @@
 package com.nnk.springboot.mappers;
 
 import com.nnk.springboot.domain.Rating;
-import com.nnk.springboot.dtos.RatingRequestDto;
-import com.nnk.springboot.dtos.RatingViewDto;
+import com.nnk.springboot.dtos.request.RatingRequestDto;
+import com.nnk.springboot.dtos.view.RatingViewDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 

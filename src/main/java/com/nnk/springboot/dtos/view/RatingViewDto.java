@@ -1,4 +1,4 @@
-package com.nnk.springboot.dtos;
+package com.nnk.springboot.dtos.view;
 
 import lombok.Getter;
 import lombok.Setter;

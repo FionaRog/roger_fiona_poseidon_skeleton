@@ -1,8 +1,8 @@
 package com.nnk.springboot.mappers;
 
 import com.nnk.springboot.domain.CurvePoint;
-import com.nnk.springboot.dtos.CurveRequestDto;
-import com.nnk.springboot.dtos.CurveViewDto;
+import com.nnk.springboot.dtos.request.CurveRequestDto;
+import com.nnk.springboot.dtos.view.CurveViewDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 

@@ -1,7 +1,7 @@
 package com.nnk.springboot.services;
 
-import com.nnk.springboot.dtos.BidListRequestDto;
-import com.nnk.springboot.dtos.BidListViewDto;
+import com.nnk.springboot.dtos.request.BidListRequestDto;
+import com.nnk.springboot.dtos.view.BidListViewDto;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package com.nnk.springboot.controllers;
 
-import com.nnk.springboot.dtos.RatingRequestDto;
-import com.nnk.springboot.dtos.RatingViewDto;
+import com.nnk.springboot.dtos.request.RatingRequestDto;
+import com.nnk.springboot.dtos.view.RatingViewDto;
 import com.nnk.springboot.services.IRatingService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

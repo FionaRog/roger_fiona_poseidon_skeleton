@@ -1,7 +1,7 @@
 package com.nnk.springboot.services;
 
-import com.nnk.springboot.dtos.RuleNameRequestDto;
-import com.nnk.springboot.dtos.RuleNameViewDto;
+import com.nnk.springboot.dtos.request.RuleNameRequestDto;
+import com.nnk.springboot.dtos.view.RuleNameViewDto;
 
 import java.util.List;
 

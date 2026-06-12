@@ -1,8 +1,8 @@
 package com.nnk.springboot.services.impl;
 
 import com.nnk.springboot.domain.CurvePoint;
-import com.nnk.springboot.dtos.CurveRequestDto;
-import com.nnk.springboot.dtos.CurveViewDto;
+import com.nnk.springboot.dtos.request.CurveRequestDto;
+import com.nnk.springboot.dtos.view.CurveViewDto;
 import com.nnk.springboot.exceptions.CurvePointNotFoundException;
 import com.nnk.springboot.mappers.CurvePointMapper;
 import com.nnk.springboot.repositories.CurvePointRepository;

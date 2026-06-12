@@ -1,7 +1,7 @@
 package com.nnk.springboot.controllers;
 
-import com.nnk.springboot.dtos.RuleNameRequestDto;
-import com.nnk.springboot.dtos.RuleNameViewDto;
+import com.nnk.springboot.dtos.request.RuleNameRequestDto;
+import com.nnk.springboot.dtos.view.RuleNameViewDto;
 import com.nnk.springboot.services.IRuleNameService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
