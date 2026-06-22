@@ -18,7 +18,7 @@ public interface CurvePointMapper {
      * @param curveRequestDto the form data to convert
      * @return the corresponding CurvePoint entity
      */
-    CurvePoint toEntity (CurveRequestDto curveRequestDto);
+    CurvePoint toEntity(CurveRequestDto curveRequestDto);
 
     /**
      * Converts a CurvePoint entity to display data.
@@ -26,5 +26,5 @@ public interface CurvePointMapper {
      * @param curvePoint the entity to convert
      * @return the corresponding display DTO
      */
-    CurveViewDto toDto (CurvePoint curvePoint);
+    CurveViewDto toDto(CurvePoint curvePoint);
 }

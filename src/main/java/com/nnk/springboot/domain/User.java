@@ -15,8 +15,8 @@ public class User {
 
     // @Validation utile? plutôt à mettre dans les DTO - utiliser plutot @columnn(nullable=false)
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name= "Id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "Id")
     private Integer id;
     private String username;
     private String password;

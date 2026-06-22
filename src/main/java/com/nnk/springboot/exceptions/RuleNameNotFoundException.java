@@ -12,5 +12,6 @@ public class RuleNameNotFoundException extends RuntimeException {
      */
     public RuleNameNotFoundException(Integer id) {
 
-        super("RuleName not found with id " + id);    }
+        super("RuleName not found with id " + id);
+    }
 }

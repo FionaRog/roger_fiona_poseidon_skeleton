@@ -18,7 +18,7 @@ public interface UserMapper {
      * @param userRequestDto the form data to convert
      * @return the corresponding User entity
      */
-    User toEntity (UserRequestDto userRequestDto);
+    User toEntity(UserRequestDto userRequestDto);
 
     /**
      * Converts a User entity to display data.
@@ -26,5 +26,5 @@ public interface UserMapper {
      * @param user the entity to convert
      * @return the corresponding display DTO
      */
-    UserViewDto toDto (User user);
+    UserViewDto toDto(User user);
 }

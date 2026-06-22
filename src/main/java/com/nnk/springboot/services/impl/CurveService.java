@@ -39,7 +39,7 @@ public class CurveService implements ICurveService {
         log.info("Getting all curve");
 
         List<CurvePoint> result = curvePointRepository.findAll();
-        log.info("Found {} CurvePoints",result.size());
+        log.info("Found {} CurvePoints", result.size());
 
         return result.stream()
                 .map(curvePointMapper::toDto)
@@ -54,7 +54,7 @@ public class CurveService implements ICurveService {
      * @throws CurvePointNotFoundException when no CurvePoint exists for the id
      */
     public CurveViewDto getCurveById(Integer id) {
-        log.info("Getting CurvePoint with id {}",id);
+        log.info("Getting CurvePoint with id {}", id);
 
         CurvePoint curvePoint = curvePointRepository.findById(id)
                 .orElseThrow(() -> {
@@ -79,7 +79,7 @@ public class CurveService implements ICurveService {
         CurvePoint curvePoint = curvePointMapper.toEntity(curveRequestDto);
 
         curvePointRepository.save(curvePoint);
-        log.info("Created Curve with id {}",curvePoint.getId());
+        log.info("Created Curve with id {}", curvePoint.getId());
 
         return curvePointMapper.toDto(curvePoint);
     }
@@ -87,29 +87,29 @@ public class CurveService implements ICurveService {
     /**
      * Updates an existing CurvePoint with submitted form data.
      *
-     * @param id the technical identifier of the CurvePoint to update
+     * @param id              the technical identifier of the CurvePoint to update
      * @param curveRequestDto the form data containing updated values
      * @return the updated CurvePoint formatted for display
      * @throws CurvePointNotFoundException when no CurvePoint exists for the id
      */
     @Transactional
     public CurveViewDto updateCurve(Integer id, CurveRequestDto curveRequestDto) {
-        log.info("Updating curve with id {}",id);
+        log.info("Updating curve with id {}", id);
 
         CurvePoint curvePoint = curvePointRepository.findById(id)
-               .orElseThrow(() -> {
-                   log.warn("Curve not found with id {}", id);
-                   return new CurvePointNotFoundException(id);
-               });
+                .orElseThrow(() -> {
+                    log.warn("Curve not found with id {}", id);
+                    return new CurvePointNotFoundException(id);
+                });
 
-       curvePoint.setCurveId(curveRequestDto.getCurveId());
-       curvePoint.setTerm(curveRequestDto.getTerm());
-       curvePoint.setValue(curveRequestDto.getValue());
+        curvePoint.setCurveId(curveRequestDto.getCurveId());
+        curvePoint.setTerm(curveRequestDto.getTerm());
+        curvePoint.setValue(curveRequestDto.getValue());
 
-       curvePointRepository.save(curvePoint);
-       log.info("Updated Curve with id {}",curvePoint.getId());
+        curvePointRepository.save(curvePoint);
+        log.info("Updated Curve with id {}", curvePoint.getId());
 
-       return curvePointMapper.toDto(curvePoint);
+        return curvePointMapper.toDto(curvePoint);
     }
 
     /**
@@ -120,17 +120,17 @@ public class CurveService implements ICurveService {
      */
     @Transactional
     public void deleteCurve(Integer id) {
-       log.info("Deleting curve with id {}",id);
+        log.info("Deleting curve with id {}", id);
 
-       CurvePoint curvePoint = curvePointRepository.findById(id)
-               .orElseThrow(() -> {
-                   log.warn("Curve not found with id {}", id);
-                   return new CurvePointNotFoundException(id);
-               });
+        CurvePoint curvePoint = curvePointRepository.findById(id)
+                .orElseThrow(() -> {
+                    log.warn("Curve not found with id {}", id);
+                    return new CurvePointNotFoundException(id);
+                });
 
-       curvePointRepository.delete(curvePoint);
+        curvePointRepository.delete(curvePoint);
 
-       log.info("Deleted curve with id {}",id);
+        log.info("Deleted curve with id {}", id);
     }
 
 

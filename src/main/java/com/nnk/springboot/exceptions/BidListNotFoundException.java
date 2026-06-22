@@ -1,10 +1,10 @@
 package com.nnk.springboot.exceptions;
 
 
-public class BidListNotFoundException extends RuntimeException{
+public class BidListNotFoundException extends RuntimeException {
 
-    public BidListNotFoundException(Integer bidListId){
+    public BidListNotFoundException(Integer bidListId) {
 
-        super("BidList not found with id "+bidListId);
+        super("BidList not found with id " + bidListId);
     }
 }

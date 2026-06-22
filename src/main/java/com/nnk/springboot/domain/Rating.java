@@ -15,7 +15,7 @@ public class Rating {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name= "Id")
+    @Column(name = "Id")
     Integer id;
     String moodysRating;
     String sandPRating;

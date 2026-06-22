@@ -36,7 +36,7 @@ public interface IRatingService {
     /**
      * Updates an existing Rating.
      *
-     * @param id the technical identifier of the Rating to update
+     * @param id               the technical identifier of the Rating to update
      * @param ratingRequestDto the form data containing updated values
      * @return the updated Rating formatted for display
      */

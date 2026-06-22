@@ -18,7 +18,7 @@ public interface RatingMapper {
      * @param ratingRequestDto the form data to convert
      * @return the corresponding Rating entity
      */
-    Rating toEntity (RatingRequestDto ratingRequestDto);
+    Rating toEntity(RatingRequestDto ratingRequestDto);
 
     /**
      * Converts a Rating entity to display data.
@@ -26,5 +26,5 @@ public interface RatingMapper {
      * @param rating the entity to convert
      * @return the corresponding display DTO
      */
-    RatingViewDto toDto (Rating rating);
+    RatingViewDto toDto(Rating rating);
 }

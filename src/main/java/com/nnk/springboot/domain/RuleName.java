@@ -1,7 +1,6 @@
 package com.nnk.springboot.domain;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,9 +13,9 @@ import lombok.Setter;
 @Table(name = "rulename")
 public class RuleName {
 
-   @Id
-   @GeneratedValue(strategy = GenerationType.AUTO)
-   @Column(name= "Id")
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "Id")
     Integer id;
     String name;
     String description;

@@ -38,7 +38,7 @@ public class RatingService implements IRatingService {
         log.info("Getting all ratings");
 
         List<Rating> results = ratingRepository.findAll();
-        log.info("Found {} ratings",results.size());
+        log.info("Found {} ratings", results.size());
 
         return results.stream()
                 .map(ratingMapper::toDto)
@@ -57,8 +57,9 @@ public class RatingService implements IRatingService {
 
         Rating rating = ratingRepository.findById(id)
                 .orElseThrow(() -> {
-                        log.warn("Rating not found with id {}", id);
-                return new RatingNotFoundException(id); });
+                    log.warn("Rating not found with id {}", id);
+                    return new RatingNotFoundException(id);
+                });
 
         return ratingMapper.toDto(rating);
     }
@@ -73,7 +74,7 @@ public class RatingService implements IRatingService {
     public RatingViewDto addRating(RatingRequestDto ratingRequestDto) {
         log.info("Adding rating ");
 
-        Rating rating  = ratingMapper.toEntity(ratingRequestDto);
+        Rating rating = ratingMapper.toEntity(ratingRequestDto);
 
         ratingRepository.save(rating);
         log.info("Rating added with id {}", rating.getId());
@@ -84,7 +85,7 @@ public class RatingService implements IRatingService {
     /**
      * Updates an existing Rating with submitted form data.
      *
-     * @param id the technical identifier of the Rating to update
+     * @param id               the technical identifier of the Rating to update
      * @param ratingRequestDto the form data containing updated values
      * @return the updated Rating formatted for display
      * @throws RatingNotFoundException when no Rating exists for the id
@@ -96,7 +97,8 @@ public class RatingService implements IRatingService {
         Rating rating = ratingRepository.findById(id)
                 .orElseThrow(() -> {
                     log.warn("Rating not found with id {}", id);
-                    return new RatingNotFoundException(id); });
+                    return new RatingNotFoundException(id);
+                });
 
         rating.setFitchRating(ratingRequestDto.getFitchRating());
         rating.setMoodysRating(ratingRequestDto.getMoodysRating());
@@ -122,12 +124,12 @@ public class RatingService implements IRatingService {
         Rating rating = ratingRepository.findById(id)
                 .orElseThrow(() -> {
                     log.warn("Rating not found with id {}", id);
-                    return new RatingNotFoundException(id); });
+                    return new RatingNotFoundException(id);
+                });
 
         ratingRepository.delete(rating);
         log.info("Rating Deleted with id {}", id);
     }
-
 
 
 }

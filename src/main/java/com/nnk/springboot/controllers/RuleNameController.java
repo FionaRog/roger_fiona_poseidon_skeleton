@@ -7,7 +7,10 @@ import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
@@ -28,14 +31,13 @@ public class RuleNameController {
     /**
      * Displays all RuleName records.
      *
-     * @param model the MVC model used to expose data to the view
+     * @param model     the MVC model used to expose data to the view
      * @param principal the currently authenticated user
      * @return the RuleName list view
      */
     @GetMapping("/ruleName/list")
-    public String home(Model model, Principal principal)
-    {
-        List<RuleNameViewDto> results =  ruleNameService.getAllRuleNames();
+    public String home(Model model, Principal principal) {
+        List<RuleNameViewDto> results = ruleNameService.getAllRuleNames();
 
         model.addAttribute("ruleNames", results);
         model.addAttribute("username", principal.getName());
@@ -60,13 +62,13 @@ public class RuleNameController {
     /**
      * Validates and creates a new RuleName.
      *
-     * @param ruleName the submitted form data
-     * @param result validation result for the submitted form
+     * @param ruleName           the submitted form data
+     * @param result             validation result for the submitted form
      * @param redirectAttributes flash attributes used after successful creation
      * @return the add view when validation fails, otherwise redirects after creation
      */
     @PostMapping("/ruleName/validate")
-        public String validate(@Valid @ModelAttribute("ruleName") RuleNameRequestDto ruleName, BindingResult result, RedirectAttributes redirectAttributes) {
+    public String validate(@Valid @ModelAttribute("ruleName") RuleNameRequestDto ruleName, BindingResult result, RedirectAttributes redirectAttributes) {
 
         if (result.hasErrors()) {
             return "ruleName/add";
@@ -81,7 +83,7 @@ public class RuleNameController {
     /**
      * Displays the form used to update an existing RuleName.
      *
-     * @param id the technical identifier of the RuleName to update
+     * @param id    the technical identifier of the RuleName to update
      * @param model the MVC model used to expose the form object
      * @return the RuleName update view
      */
@@ -107,16 +109,16 @@ public class RuleNameController {
     /**
      * Validates and updates an existing RuleName.
      *
-     * @param id the technical identifier of the RuleName to update
+     * @param id                 the technical identifier of the RuleName to update
      * @param ruleNameRequestDto the submitted form data
-     * @param result validation result for the submitted form
-     * @param model the MVC model used when validation fails
+     * @param result             validation result for the submitted form
+     * @param model              the MVC model used when validation fails
      * @param redirectAttributes flash attributes used after successful update
      * @return the update view when validation fails, otherwise redirects to the list
      */
     @PostMapping("/ruleName/update/{id}")
     public String updateRuleName(@PathVariable("id") Integer id, @Valid @ModelAttribute("ruleName") RuleNameRequestDto ruleNameRequestDto,
-                             BindingResult result,Model model, RedirectAttributes redirectAttributes) {
+                                 BindingResult result, Model model, RedirectAttributes redirectAttributes) {
 
         if (result.hasErrors()) {
             model.addAttribute("id", id);
@@ -132,7 +134,7 @@ public class RuleNameController {
     /**
      * Deletes an existing RuleName.
      *
-     * @param id the technical identifier of the RuleName to delete
+     * @param id                 the technical identifier of the RuleName to delete
      * @param redirectAttributes flash attributes used after successful deletion
      * @return redirects to the RuleName list
      */

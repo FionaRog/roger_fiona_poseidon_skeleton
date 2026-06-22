@@ -3,6 +3,7 @@ package com.nnk.springboot.controllers;
 import com.nnk.springboot.dtos.request.RatingRequestDto;
 import com.nnk.springboot.dtos.view.RatingViewDto;
 import com.nnk.springboot.services.IRatingService;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import jakarta.validation.Valid;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
@@ -32,18 +32,17 @@ public class RatingController {
     /**
      * Displays all Rating records.
      *
-     * @param model the MVC model used to expose data to the view
+     * @param model     the MVC model used to expose data to the view
      * @param principal the currently authenticated user
      * @return the Rating list view
      */
     @GetMapping("/rating/list")
-    public String home(Model model, Principal principal)
-    {
+    public String home(Model model, Principal principal) {
 
         List<RatingViewDto> result = ratingService.getAllRatings();
 
-        model.addAttribute("ratings",result);
-        model.addAttribute("username",principal.getName());
+        model.addAttribute("ratings", result);
+        model.addAttribute("username", principal.getName());
 
         return "rating/list";
     }
@@ -57,7 +56,7 @@ public class RatingController {
     @GetMapping("/rating/add")
     public String addRatingForm(Model model) {
 
-        model.addAttribute("rating",new RatingRequestDto());
+        model.addAttribute("rating", new RatingRequestDto());
 
         return "rating/add";
     }
@@ -65,8 +64,8 @@ public class RatingController {
     /**
      * Validates and creates a new Rating.
      *
-     * @param ratingRequestDto the submitted form data
-     * @param result validation result for the submitted form
+     * @param ratingRequestDto   the submitted form data
+     * @param result             validation result for the submitted form
      * @param redirectAttributes flash attributes used after successful creation
      * @return the add view when validation fails, otherwise redirects to the list
      */
@@ -86,7 +85,7 @@ public class RatingController {
     /**
      * Displays the form used to update an existing Rating.
      *
-     * @param id the technical identifier of the Rating to update
+     * @param id    the technical identifier of the Rating to update
      * @param model the MVC model used to expose the form object
      * @return the Rating update view
      */
@@ -101,8 +100,8 @@ public class RatingController {
         form.setSandPRating(ratingViewDto.getSandPRating());
         form.setOrderNumber(ratingViewDto.getOrderNumber());
 
-        model.addAttribute("rating",form);
-        model.addAttribute("id",id);
+        model.addAttribute("rating", form);
+        model.addAttribute("id", id);
 
         return "rating/update";
     }
@@ -110,23 +109,23 @@ public class RatingController {
     /**
      * Validates and updates an existing Rating.
      *
-     * @param id the technical identifier of the Rating to update
-     * @param ratingRequestDto the submitted form data
-     * @param result validation result for the submitted form
-     * @param model the MVC model used when validation fails
+     * @param id                 the technical identifier of the Rating to update
+     * @param ratingRequestDto   the submitted form data
+     * @param result             validation result for the submitted form
+     * @param model              the MVC model used when validation fails
      * @param redirectAttributes flash attributes used after successful update
      * @return the update view when validation fails, otherwise redirects to the list
      */
     @PostMapping("/rating/update/{id}")
     public String updateRating(@PathVariable("id") Integer id, @Valid @ModelAttribute("rating") RatingRequestDto ratingRequestDto,
-                             BindingResult result,Model model, RedirectAttributes redirectAttributes) {
+                               BindingResult result, Model model, RedirectAttributes redirectAttributes) {
 
         if (result.hasErrors()) {
-            model.addAttribute("id",id);
+            model.addAttribute("id", id);
             return "rating/update";
         }
 
-        ratingService.updateRating(id,  ratingRequestDto);
+        ratingService.updateRating(id, ratingRequestDto);
         redirectAttributes.addFlashAttribute("successMessage", "Rating successfully updated");
 
         return "redirect:/rating/list";
@@ -135,7 +134,7 @@ public class RatingController {
     /**
      * Deletes an existing Rating.
      *
-     * @param id the technical identifier of the Rating to delete
+     * @param id                 the technical identifier of the Rating to delete
      * @param redirectAttributes flash attributes used after successful deletion
      * @return redirects to the Rating list
      */

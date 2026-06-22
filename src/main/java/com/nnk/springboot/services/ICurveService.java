@@ -36,7 +36,7 @@ public interface ICurveService {
     /**
      * Updates an existing CurvePoint.
      *
-     * @param id the technical identifier of the CurvePoint to update
+     * @param id              the technical identifier of the CurvePoint to update
      * @param curveRequestDto the form data containing updated values
      * @return the updated CurvePoint formatted for display
      */

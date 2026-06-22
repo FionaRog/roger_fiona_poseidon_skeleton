@@ -36,7 +36,7 @@ public interface IRuleNameService {
     /**
      * Updates an existing RuleName.
      *
-     * @param id the technical identifier of the RuleName to update
+     * @param id                 the technical identifier of the RuleName to update
      * @param ruleNameRequestDto the form data containing updated values
      * @return the updated RuleName formatted for display
      */

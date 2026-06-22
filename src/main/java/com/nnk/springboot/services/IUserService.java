@@ -36,7 +36,7 @@ public interface IUserService {
     /**
      * Updates an existing User.
      *
-     * @param id the technical identifier of the User to update
+     * @param id  the technical identifier of the User to update
      * @param dto the form data containing updated values
      * @return the updated User formatted for display
      */

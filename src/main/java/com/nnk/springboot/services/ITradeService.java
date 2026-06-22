@@ -36,7 +36,7 @@ public interface ITradeService {
     /**
      * Updates an existing Trade.
      *
-     * @param id the technical identifier of the Trade to update
+     * @param id              the technical identifier of the Trade to update
      * @param tradeRequestDto the form data containing updated values
      * @return the updated Trade formatted for display
      */

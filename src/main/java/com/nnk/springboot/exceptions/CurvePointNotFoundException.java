@@ -12,6 +12,6 @@ public class CurvePointNotFoundException extends RuntimeException {
      */
     public CurvePointNotFoundException(Integer id) {
 
-      super("CurvePoint not found with id " + id);
+        super("CurvePoint not found with id " + id);
     }
 }

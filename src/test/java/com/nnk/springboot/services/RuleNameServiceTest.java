@@ -96,7 +96,7 @@ public class RuleNameServiceTest {
     public void getRuleNameNotFoundTest() {
         when(ruleNameRepository.findById(1)).thenReturn(Optional.empty());
 
-        assertThrows(RuleNameNotFoundException.class, () -> ruleNameService.getRuleNamesById(1) );
+        assertThrows(RuleNameNotFoundException.class, () -> ruleNameService.getRuleNamesById(1));
 
         verify(ruleNameRepository).findById(1);
         verifyNoInteractions(ruleNameMapper);
@@ -203,6 +203,7 @@ public class RuleNameServiceTest {
         verify(ruleNameRepository).save(existingRuleName);
         verify(ruleNameMapper).toDto(savedRuleName);
     }
+
     @Test
     @DisplayName("Should throw exception when updating an unknown RuleName")
     public void updateRuleNameNotFoundTest() {

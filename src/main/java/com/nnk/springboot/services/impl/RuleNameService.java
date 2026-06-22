@@ -38,7 +38,7 @@ public class RuleNameService implements IRuleNameService {
         log.info("getting all RuleNames");
 
         List<RuleName> result = ruleNameRepository.findAll();
-        log.info("Found {} RuleNames",  result.size());
+        log.info("Found {} RuleNames", result.size());
 
         return result.stream()
                 .map(ruleNameMapper::toDto)
@@ -57,8 +57,9 @@ public class RuleNameService implements IRuleNameService {
 
         RuleName ruleName = ruleNameRepository.findById(id)
                 .orElseThrow(() -> {
-                        log.warn("RuleName with ID {} not found", id);
-                        return new RuleNameNotFoundException(id); });
+                    log.warn("RuleName with ID {} not found", id);
+                    return new RuleNameNotFoundException(id);
+                });
 
         return ruleNameMapper.toDto(ruleName);
     }
@@ -84,7 +85,7 @@ public class RuleNameService implements IRuleNameService {
     /**
      * Updates an existing RuleName.
      *
-     * @param id the technical identifier of the RuleName to update
+     * @param id                 the technical identifier of the RuleName to update
      * @param ruleNameRequestDto the submitted form data containing updated values
      * @return the updated RuleName formatted for display
      * @throws RuleNameNotFoundException when no RuleName exists for the given id
@@ -96,7 +97,8 @@ public class RuleNameService implements IRuleNameService {
         RuleName ruleName = ruleNameRepository.findById(id)
                 .orElseThrow(() -> {
                     log.warn("RuleName with ID {} not found", id);
-                    return new RuleNameNotFoundException(id); });
+                    return new RuleNameNotFoundException(id);
+                });
 
         ruleName.setName(ruleNameRequestDto.getName());
         ruleName.setDescription(ruleNameRequestDto.getDescription());
@@ -108,7 +110,7 @@ public class RuleNameService implements IRuleNameService {
         RuleName savedRuleName = ruleNameRepository.save(ruleName);
         log.info("RuleName updated with id{}", savedRuleName.getId());
 
-       return ruleNameMapper.toDto(savedRuleName);
+        return ruleNameMapper.toDto(savedRuleName);
     }
 
     /**

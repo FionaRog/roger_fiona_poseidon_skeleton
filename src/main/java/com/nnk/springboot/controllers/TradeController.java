@@ -3,6 +3,7 @@ package com.nnk.springboot.controllers;
 import com.nnk.springboot.dtos.request.TradeRequestDto;
 import com.nnk.springboot.dtos.view.TradeViewDto;
 import com.nnk.springboot.services.ITradeService;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import jakarta.validation.Valid;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
@@ -31,13 +31,12 @@ public class TradeController {
     /**
      * Displays all Trade records.
      *
-     * @param model the MVC model used to expose data to the view
+     * @param model     the MVC model used to expose data to the view
      * @param principal the currently authenticated user
      * @return the Trade list view
      */
     @GetMapping("/trade/list")
-    public String home(Model model, Principal principal)
-    {
+    public String home(Model model, Principal principal) {
         List<TradeViewDto> results = tradeService.getAllTrades();
 
         model.addAttribute("trades", results);
@@ -63,8 +62,8 @@ public class TradeController {
     /**
      * Validates and creates a new Trade.
      *
-     * @param tradeRequestDto the submitted form data
-     * @param result validation result for the submitted form
+     * @param tradeRequestDto    the submitted form data
+     * @param result             validation result for the submitted form
      * @param redirectAttributes flash attributes used after successful creation
      * @return the add view when validation fails, otherwise redirects to the list
      */
@@ -85,7 +84,7 @@ public class TradeController {
     /**
      * Displays the form used to update an existing Trade.
      *
-     * @param id the technical identifier of the Trade to update
+     * @param id    the technical identifier of the Trade to update
      * @param model the MVC model used to expose the form object
      * @return the Trade update view
      */
@@ -108,16 +107,16 @@ public class TradeController {
     /**
      * Validates and updates an existing Trade.
      *
-     * @param id the technical identifier of the Trade to update
-     * @param tradeRequestDto the submitted form data
-     * @param result validation result for the submitted form
-     * @param model the MVC model used when validation fails
+     * @param id                 the technical identifier of the Trade to update
+     * @param tradeRequestDto    the submitted form data
+     * @param result             validation result for the submitted form
+     * @param model              the MVC model used when validation fails
      * @param redirectAttributes flash attributes used after successful update
      * @return the update view when validation fails, otherwise redirects to the list
      */
     @PostMapping("/trade/update/{id}")
     public String updateTrade(@PathVariable("id") Integer id, @Valid @ModelAttribute("trade") TradeRequestDto tradeRequestDto,
-                             BindingResult result,Model model, RedirectAttributes redirectAttributes) {
+                              BindingResult result, Model model, RedirectAttributes redirectAttributes) {
 
         if (result.hasErrors()) {
             model.addAttribute("id", id);
@@ -134,7 +133,7 @@ public class TradeController {
     /**
      * Deletes an existing Trade.
      *
-     * @param id the technical identifier of the Trade to delete
+     * @param id                 the technical identifier of the Trade to delete
      * @param redirectAttributes flash attributes used after successful deletion
      * @return redirects to the Trade list
      */

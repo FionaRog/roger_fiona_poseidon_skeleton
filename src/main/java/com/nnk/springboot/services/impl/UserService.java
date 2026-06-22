@@ -64,7 +64,8 @@ public class UserService implements IUserService {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> {
                     log.warn("User with ID {} not found", id);
-                    return new UserNotFoundException(id); });
+                    return new UserNotFoundException(id);
+                });
 
         return userMapper.toDto(user);
     }
@@ -93,7 +94,7 @@ public class UserService implements IUserService {
     /**
      * Updates an existing User and encodes the submitted password.
      *
-     * @param id the technical identifier of the User to update
+     * @param id  the technical identifier of the User to update
      * @param dto the submitted form data containing updated values
      * @return the updated User formatted for display
      * @throws UserNotFoundException when no User exists for the given id

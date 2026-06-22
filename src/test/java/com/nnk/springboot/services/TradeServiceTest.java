@@ -109,7 +109,7 @@ public class TradeServiceTest {
         requestDto.setAccount("Account");
         requestDto.setType("Type");
 
-        Trade  trade = new Trade();
+        Trade trade = new Trade();
         trade.setBuyQuantity(10.0);
         trade.setAccount("Account");
         trade.setType("Type");
@@ -204,7 +204,6 @@ public class TradeServiceTest {
         verify(tradeRepository).findById(1);
         verify(tradeRepository).delete(trade);
     }
-
 
 
 }

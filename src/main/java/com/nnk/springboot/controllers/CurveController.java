@@ -24,25 +24,25 @@ public class CurveController {
 
     private ICurveService curvePointService;
 
-    public CurveController(ICurveService curvePointService){
-              this.curvePointService=curvePointService;
+    public CurveController(ICurveService curvePointService) {
+        this.curvePointService = curvePointService;
     }
 
 
     /**
      * Displays all CurvePoint records.
      *
-     * @param model the MVC model used to expose data to the view
+     * @param model     the MVC model used to expose data to the view
      * @param principal the currently authenticated user
      * @return the CurvePoint list view
      */
     @GetMapping("/curvePoint/list")
-    public String home(Model model, Principal principal)    {
+    public String home(Model model, Principal principal) {
 
         List<CurveViewDto> curveView = curvePointService.getAllCurve();
 
-        model.addAttribute("curvePoints",curveView);
-        model.addAttribute("username",principal.getName());
+        model.addAttribute("curvePoints", curveView);
+        model.addAttribute("username", principal.getName());
 
         return "curvePoint/list";
     }
@@ -56,7 +56,7 @@ public class CurveController {
     @GetMapping("/curvePoint/add")
     public String addCurveForm(Model model) {
 
-        model.addAttribute("curvePoint",new CurveRequestDto());
+        model.addAttribute("curvePoint", new CurveRequestDto());
 
         return "curvePoint/add";
     }
@@ -64,13 +64,13 @@ public class CurveController {
     /**
      * Validates and creates a new CurvePoint.
      *
-     * @param curvePoint the submitted form data
-     * @param result validation result for the submitted form
+     * @param curvePoint         the submitted form data
+     * @param result             validation result for the submitted form
      * @param redirectAttributes flash attributes used after successful creation
      * @return the add view when validation fails, otherwise redirects to the list
      */
     @PostMapping("/curvePoint/validate")
-    public String validate(@Valid  @ModelAttribute("curvePoint") CurveRequestDto curvePoint, BindingResult result, RedirectAttributes redirectAttributes) {
+    public String validate(@Valid @ModelAttribute("curvePoint") CurveRequestDto curvePoint, BindingResult result, RedirectAttributes redirectAttributes) {
 
         if (result.hasErrors()) {
             return "curvePoint/add";
@@ -85,7 +85,7 @@ public class CurveController {
     /**
      * Displays the form used to update an existing CurvePoint.
      *
-     * @param id the technical identifier of the CurvePoint to update
+     * @param id    the technical identifier of the CurvePoint to update
      * @param model the MVC model used to expose the form object
      * @return the CurvePoint update view
      */
@@ -99,7 +99,7 @@ public class CurveController {
         form.setTerm(curveView.getTerm());
         form.setValue(curveView.getValue());
 
-        model.addAttribute("curvePoint",form);
+        model.addAttribute("curvePoint", form);
         model.addAttribute("id", id);
 
         return "curvePoint/update";
@@ -108,16 +108,16 @@ public class CurveController {
     /**
      * Validates and updates an existing CurvePoint.
      *
-     * @param id the technical identifier of the CurvePoint to update
-     * @param curveRequestDto the submitted form data
-     * @param result validation result for the submitted form
-     * @param model the MVC model used when validation fails
+     * @param id                 the technical identifier of the CurvePoint to update
+     * @param curveRequestDto    the submitted form data
+     * @param result             validation result for the submitted form
+     * @param model              the MVC model used when validation fails
      * @param redirectAttributes flash attributes used after successful update
      * @return the update view when validation fails, otherwise redirects to the list
      */
     @PostMapping("/curvePoint/update/{id}")
     public String updateCurve(@PathVariable("id") Integer id, @Valid @ModelAttribute("curvePoint") CurveRequestDto curveRequestDto,
-                             BindingResult result, Model model, RedirectAttributes redirectAttributes) {
+                              BindingResult result, Model model, RedirectAttributes redirectAttributes) {
 
         if (result.hasErrors()) {
             model.addAttribute("id", id);
@@ -134,7 +134,7 @@ public class CurveController {
     /**
      * Deletes an existing CurvePoint.
      *
-     * @param id the technical identifier of the CurvePoint to delete
+     * @param id                 the technical identifier of the CurvePoint to delete
      * @param redirectAttributes flash attributes used after successful deletion
      * @return redirects to the CurvePoint list
      */

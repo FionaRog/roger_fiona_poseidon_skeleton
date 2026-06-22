@@ -18,7 +18,7 @@ public interface RuleNameMapper {
      * @param requestDto the form data to convert
      * @return the corresponding RuleName entity
      */
-    RuleName toEntity (RuleNameRequestDto requestDto);
+    RuleName toEntity(RuleNameRequestDto requestDto);
 
     /**
      * Converts a RuleName entity to display data.
@@ -26,5 +26,5 @@ public interface RuleNameMapper {
      * @param ruleName the entity to convert
      * @return the corresponding display DTO
      */
-    RuleNameViewDto toDto (RuleName ruleName);
+    RuleNameViewDto toDto(RuleName ruleName);
 }

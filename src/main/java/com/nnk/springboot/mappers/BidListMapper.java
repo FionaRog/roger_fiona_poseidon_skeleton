@@ -10,8 +10,8 @@ import org.mapstruct.ReportingPolicy;
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface BidListMapper {
 
-    BidList toEntity (BidListRequestDto bidListRequestDto);
+    BidList toEntity(BidListRequestDto bidListRequestDto);
 
-    @Mapping(source= "bidListId", target= "id" )
-    BidListViewDto toDto (BidList bidList);
+    @Mapping(source = "bidListId", target = "id")
+    BidListViewDto toDto(BidList bidList);
 }

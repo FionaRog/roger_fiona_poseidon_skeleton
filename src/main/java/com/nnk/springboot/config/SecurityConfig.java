@@ -13,12 +13,12 @@ public class SecurityConfig {
 
     // ajouter condition admin pour accéder user/add et update
     @Bean
-   public SecurityFilterChain filterChain (HttpSecurity http) throws Exception {
-        return  http.authorizeRequests(auth -> {
-                        auth.requestMatchers("/access-denied","/login").permitAll();
-                        auth.requestMatchers("/css/**", "/js/**").permitAll();
-                        auth.requestMatchers("/user/**").hasRole("ADMIN");
-                        auth.anyRequest().authenticated();
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        return http.authorizeRequests(auth -> {
+                    auth.requestMatchers("/access-denied", "/login").permitAll();
+                    auth.requestMatchers("/css/**", "/js/**").permitAll();
+                    auth.requestMatchers("/user/**").hasRole("ADMIN");
+                    auth.anyRequest().authenticated();
                 })
                 .formLogin(form -> form
                         .loginPage("/login").loginProcessingUrl("/login")
@@ -27,7 +27,7 @@ public class SecurityConfig {
                             boolean isAdmin = authentication.getAuthorities().stream()
                                     .anyMatch(authority -> authority.getAuthority().equals("ROLE_ADMIN"));
 
-                            if(isAdmin) {
+                            if (isAdmin) {
                                 response.sendRedirect("/user/list");
                             } else {
                                 response.sendRedirect("/home");
@@ -38,7 +38,7 @@ public class SecurityConfig {
                 )
                 .exceptionHandling(exception -> exception
                         .accessDeniedHandler((request, response, accessDeniedException) ->
-                                response.sendRedirect ("/access-denied")
+                                response.sendRedirect("/access-denied")
                         )
                 )
                 .logout(logout -> logout
@@ -54,5 +54,6 @@ public class SecurityConfig {
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();}
+        return new BCryptPasswordEncoder();
+    }
 }
