@@ -38,7 +38,7 @@ public class TradeService implements ITradeService {
         log.info("getting all Trades");
 
         List<Trade> result = tradeRepository.findAll();
-        log.info("Found {} Trades",  result.size());
+        log.info("Found {} Trades", result.size());
 
         return result.stream()
                 .map(tradeMapper::toDto)
@@ -58,7 +58,8 @@ public class TradeService implements ITradeService {
         Trade trade = tradeRepository.findById(id)
                 .orElseThrow(() -> {
                     log.warn("Trade with ID {} not found", id);
-                    return new TradeNotFoundException(id); });
+                    return new TradeNotFoundException(id);
+                });
 
         return tradeMapper.toDto(trade);
     }
@@ -84,7 +85,7 @@ public class TradeService implements ITradeService {
     /**
      * Updates an existing Trade.
      *
-     * @param id the technical identifier of the Trade to update
+     * @param id              the technical identifier of the Trade to update
      * @param tradeRequestDto the submitted form data containing updated values
      * @return the updated Trade formatted for display
      * @throws TradeNotFoundException when no Trade exists for the given id
@@ -96,7 +97,8 @@ public class TradeService implements ITradeService {
         Trade trade = tradeRepository.findById(id)
                 .orElseThrow(() -> {
                     log.warn("Trade with ID {} not found", id);
-                    return new TradeNotFoundException(id); });
+                    return new TradeNotFoundException(id);
+                });
 
         trade.setAccount(tradeRequestDto.getAccount());
         trade.setType(tradeRequestDto.getType());
@@ -124,7 +126,7 @@ public class TradeService implements ITradeService {
                     return new TradeNotFoundException(id);
                 });
 
-        tradeRepository.deleteById(id);
+        tradeRepository.delete(trade);
         log.info("deleted Trade with ID {}", id);
     }
 }

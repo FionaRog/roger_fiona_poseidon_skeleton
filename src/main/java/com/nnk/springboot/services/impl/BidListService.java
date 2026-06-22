@@ -26,30 +26,29 @@ public class BidListService implements IBidListService {
         this.bidListMapper = bidListMapper;
     }
 
-    public List<BidListViewDto> getBidList(){
+    public List<BidListViewDto> getBidList() {
         log.info("Fetching all BidLists");
 
         List<BidList> result = bidListRepository.findAll();
-        log.info("Found {} BidLists",result.size());
+        log.info("Found {} BidLists", result.size());
 
         return result.stream().map(bidListMapper::toDto).toList();
     }
 
-    public BidListViewDto getBidListById(Integer id){
-        log.info("Fetching bidList by id {}",id);
+    public BidListViewDto getBidListById(Integer id) {
+        log.info("Fetching bidList by id {}", id);
 
         BidList bidList = bidListRepository.findById(id)
                 .orElseThrow(() -> {
-                    log.warn("BidList not found with id {}",id);
+                    log.warn("BidList not found with id {}", id);
                     return new BidListNotFoundException(id);
                 });
 
         return bidListMapper.toDto(bidList);
     }
 
-    // utile de sécurisé en récupérant l'user (oui pour les logs)?
     @Transactional
-    public BidListViewDto addBidList(BidListRequestDto bidListRequestDto){
+    public BidListViewDto addBidList(BidListRequestDto bidListRequestDto) {
         log.info("Creating BidList for account={}, type={}",
                 bidListRequestDto.getAccount(),
                 bidListRequestDto.getType());
@@ -63,7 +62,7 @@ public class BidListService implements IBidListService {
     }
 
     @Transactional
-    public BidListViewDto updateBidList(Integer id, BidListRequestDto bidListRequestDto){
+    public BidListViewDto updateBidList(Integer id, BidListRequestDto bidListRequestDto) {
         log.info("Updating BidList with id={}", id);
 
         BidList bidList = bidListRepository.findById(id)
@@ -83,7 +82,7 @@ public class BidListService implements IBidListService {
     }
 
     @Transactional
-    public void deleteBidList(Integer id){
+    public void deleteBidList(Integer id) {
         log.info("Deleting BidList with id={}", id);
 
         BidList deleteBidList = bidListRepository.findById(id)
