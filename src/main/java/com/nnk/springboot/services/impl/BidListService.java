@@ -13,6 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * Service implementation for BidList business operations.
+ */
 @Slf4j
 @Service
 public class BidListService implements IBidListService {
@@ -21,11 +24,22 @@ public class BidListService implements IBidListService {
 
     private final BidListMapper bidListMapper;
 
+    /**
+     * Creates the BidList service with its repository and mapper dependencies.
+     *
+     * @param bidListRepository repository used to access BidList records
+     * @param bidListMapper mapper used to convert between entities and DTOs
+     */
     public BidListService(BidListRepository bidListRepository, BidListMapper bidListMapper) {
         this.bidListRepository = bidListRepository;
         this.bidListMapper = bidListMapper;
     }
 
+    /**
+     * Retrieves all BidList records from the repository.
+     *
+     * @return BidList records formatted for display
+     */
     public List<BidListViewDto> getBidList() {
         log.info("Fetching all BidLists");
 
@@ -35,6 +49,13 @@ public class BidListService implements IBidListService {
         return result.stream().map(bidListMapper::toDto).toList();
     }
 
+    /**
+     * Retrieves a BidList by id.
+     *
+     * @param id the technical identifier of the BidList
+     * @return the matching BidList formatted for display
+     * @throws BidListNotFoundException when no BidList exists for the id
+     */
     public BidListViewDto getBidListById(Integer id) {
         log.info("Fetching bidList by id {}", id);
 
@@ -47,6 +68,12 @@ public class BidListService implements IBidListService {
         return bidListMapper.toDto(bidList);
     }
 
+    /**
+     * Creates a new BidList from form data.
+     *
+     * @param bidListRequestDto the form data used to create the BidList
+     * @return the created BidList formatted for display
+     */
     @Transactional
     public BidListViewDto addBidList(BidListRequestDto bidListRequestDto) {
         log.info("Creating BidList for account={}, type={}",
@@ -61,6 +88,14 @@ public class BidListService implements IBidListService {
         return bidListMapper.toDto(savedBidList);
     }
 
+    /**
+     * Updates an existing BidList with submitted form data.
+     *
+     * @param id the technical identifier of the BidList to update
+     * @param bidListRequestDto the form data containing updated values
+     * @return the updated BidList formatted for display
+     * @throws BidListNotFoundException when no BidList exists for the id
+     */
     @Transactional
     public BidListViewDto updateBidList(Integer id, BidListRequestDto bidListRequestDto) {
         log.info("Updating BidList with id={}", id);
@@ -81,6 +116,12 @@ public class BidListService implements IBidListService {
         return bidListMapper.toDto(savedBidList);
     }
 
+    /**
+     * Deletes an existing BidList.
+     *
+     * @param id the technical identifier of the BidList to delete
+     * @throws BidListNotFoundException when no BidList exists for the id
+     */
     @Transactional
     public void deleteBidList(Integer id) {
         log.info("Deleting BidList with id={}", id);

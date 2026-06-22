@@ -19,6 +19,11 @@ public class CustomUserDetails implements UserDetailsService {
 
     private final UserRepository userRepository;
 
+    /**
+     * Creates the service used by Spring Security to retrieve application users.
+     *
+     * @param userRepository repository used to find users by username
+     */
     public CustomUserDetails(UserRepository userRepository) {
         this.userRepository = userRepository;
     }

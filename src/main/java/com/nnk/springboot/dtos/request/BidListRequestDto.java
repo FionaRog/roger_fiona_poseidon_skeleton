@@ -6,6 +6,9 @@ import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Form data used to create or update a BidList entry.
+ */
 @Getter
 @Setter
 public class BidListRequestDto {

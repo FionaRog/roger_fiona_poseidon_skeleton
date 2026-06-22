@@ -22,7 +22,7 @@ import java.util.List;
  */
 @Controller
 public class RatingController {
-    // TODO: Inject Rating service
+
     private final IRatingService ratingService;
 
     public RatingController(IRatingService ratingService) {
@@ -91,7 +91,6 @@ public class RatingController {
      */
     @GetMapping("/rating/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-        // TODO: get Rating by Id and to model then show to the form
         RatingViewDto ratingViewDto = ratingService.getRatingById(id);
 
         RatingRequestDto form = new RatingRequestDto();

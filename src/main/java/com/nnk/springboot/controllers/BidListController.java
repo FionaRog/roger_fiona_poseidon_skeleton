@@ -16,18 +16,35 @@ import java.security.Principal;
 import java.util.List;
 
 
+/**
+ * Handles web pages and form submissions for BidList management.
+ *
+ * <p>The controller connects BidList service operations to Thymeleaf templates
+ * for listing, creating, updating and deleting bid list entries.</p>
+ */
 @Controller
 public class BidListController {
-    // TODO: Inject Bid service
+
     private IBidListService bidListService;
 
+    /**
+     * Creates the controller with the service used to manage BidList data.
+     *
+     * @param bidListService service exposing BidList CRUD operations
+     */
     public BidListController(IBidListService bidListService) {
         this.bidListService = bidListService;
     }
 
+    /**
+     * Displays all bid list entries for the authenticated user.
+     *
+     * @param model the model used to pass bid list data to the view
+     * @param principal the currently authenticated user
+     * @return the bid list page
+     */
     @GetMapping("/bidList/list")
     public String home(Model model, Principal principal) {
-        // TODO: call service find all bids to show to the view
 
         List<BidListViewDto> bidList = bidListService.getBidList();
 
@@ -37,6 +54,12 @@ public class BidListController {
         return "bidList/list";
     }
 
+    /**
+     * Displays the form used to create a new bid list entry.
+     *
+     * @param model the model used to expose an empty form object
+     * @return the bid list creation page
+     */
     @GetMapping("/bidList/add")
     public String addBidForm(Model model) {
 
@@ -45,9 +68,16 @@ public class BidListController {
         return "bidList/add";
     }
 
+    /**
+     * Validates and creates a new bid list entry from the submitted form.
+     *
+     * @param bidListRequestDto form data submitted by the user
+     * @param result validation result for the submitted form
+     * @param redirectAttributes flash attributes used after successful creation
+     * @return the creation page when validation fails, otherwise redirects to the list page
+     */
     @PostMapping("/bidList/validate")
     public String validate(@Valid BidListRequestDto bidListRequestDto, BindingResult result, RedirectAttributes redirectAttributes) {
-        // TODO: check data valid and save to db, after saving return bid list
 
         if (result.hasErrors()) {
             return "bidList/add";
@@ -59,9 +89,15 @@ public class BidListController {
         return "redirect:/bidList/list";
     }
 
+    /**
+     * Displays the update form for an existing bid list entry.
+     *
+     * @param id identifier of the bid list entry to update
+     * @param model the model used to expose the current bid list values
+     * @return the bid list update page
+     */
     @GetMapping("/bidList/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-        // TODO: get Bid by Id and to model then show to the form
         BidListViewDto bidView = bidListService.getBidListById(id);
 
         BidListRequestDto form = new BidListRequestDto();
@@ -74,11 +110,19 @@ public class BidListController {
         return "bidList/update";
     }
 
-    // Changer @Post en @Put
+    /**
+     * Validates and updates an existing bid list entry.
+     *
+     * @param id identifier of the bid list entry to update
+     * @param bidListRequestDto form data submitted by the user
+     * @param result validation result for the submitted form
+     * @param model the model used to restore the update page after validation errors
+     * @param redirectAttributes flash attributes used after successful update
+     * @return the update page when validation fails, otherwise redirects to the list page
+     */
     @PostMapping("/bidList/update/{id}")
     public String updateBid(@PathVariable("id") Integer id, @Valid BidListRequestDto bidListRequestDto,
                             BindingResult result, Model model, RedirectAttributes redirectAttributes) {
-        // TODO: check required fields, if valid call service to update Bid and return list Bid
         if (result.hasErrors()) {
             model.addAttribute("id", id);
             return "bidList/update";
@@ -91,9 +135,15 @@ public class BidListController {
         return "redirect:/bidList/list";
     }
 
+    /**
+     * Deletes an existing bid list entry.
+     *
+     * @param id identifier of the bid list entry to delete
+     * @param redirectAttributes flash attributes used after successful deletion
+     * @return a redirect to the bid list page
+     */
     @PostMapping("/bidList/delete/{id}")
     public String deleteBid(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
-        // TODO: Find Bid by Id and delete the bid, return to Bid list
         bidListService.deleteBidList(id);
 
         redirectAttributes.addFlashAttribute("successMessage", "BidList has been deleted");

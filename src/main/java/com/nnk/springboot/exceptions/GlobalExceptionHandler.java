@@ -5,10 +5,21 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+/**
+ * Handles application exceptions raised by MVC controllers and services.
+ */
 @Slf4j
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
+    /**
+     * Handles missing BidList entries by redirecting the user to the BidList
+     * page with an error message.
+     *
+     * @param exception the exception raised when the BidList entry is missing
+     * @param redirectAttributes flash attributes used to expose the error message
+     * @return a redirect to the BidList listing page
+     */
     @ExceptionHandler(BidListNotFoundException.class)
     public String handleBidListNotFound(BidListNotFoundException exception, RedirectAttributes redirectAttributes) {
         log.warn("BidList error: {}", exception.getMessage());
